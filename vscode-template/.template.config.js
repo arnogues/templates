@@ -27,9 +27,14 @@ module.exports = {
     const { base } = path.parse(fileName);
     // You can change the file name
 
-    return base.replace(
-      /__templateNameToPascalCase__/g,
-      templateName
-    );
+    return base.replace(/__templateName__/gm, templateName)
+      .replace(
+        /__templateNameToPascalCase__/gm,
+        changeCase.pascalCase(templateName)
+      )
+      .replace(
+        /__templateNameToParamCase__/gm,
+        changeCase.paramCase(templateName)
+      );
   }
 };
